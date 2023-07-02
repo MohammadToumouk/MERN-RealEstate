@@ -34,7 +34,6 @@ const getProperty = async(req,res) => {
 const getNearbyProperties = async (req, res) => {
     try {
       const { lng, lat, distance } = req.query;
-      console.log(req.query);
       const property = await Property.find({
         location: {
           $near: {
