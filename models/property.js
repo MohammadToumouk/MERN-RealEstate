@@ -29,5 +29,5 @@ const propertySchema = new mongoose.Schema({
     availability: {type: String, enum: ['vacant', 'rented', 'sold'], default: 'vacant'},
     createdAt: {type: Date, default: Date.now}
 });
-
+propertySchema.index({ location: "2dsphere" });
 module.exports = mongoose.model('Property', propertySchema);
