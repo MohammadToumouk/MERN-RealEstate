@@ -9,8 +9,6 @@ import {
     MDBBtn
   } from 'mdb-react-ui-kit';
 
-
-
 const PropertyDetails = () => {
     const { id } = useParams();
     const [property, setProperty] = useState([]);
@@ -18,10 +16,8 @@ const PropertyDetails = () => {
     useEffect(() => {
 
         const fetchProperty = async() => {
-
             const res = await axios.get(`http://localhost:5090/properties/${id}`);
             setProperty(res.data);
-            
         };
         fetchProperty();
     }, [id]);
@@ -34,16 +30,18 @@ const PropertyDetails = () => {
                     
             <MDBCardBody>
                 <MDBCardTitle>{property.title}</MDBCardTitle>
-                <MDBCardTitle>{property.owner}</MDBCardTitle>
+                <MDBCardTitle>Agent:{property?.owner?.name}</MDBCardTitle>
                 <MDBCardTitle>Price:{property.price}</MDBCardTitle>
-                <MDBCardTitle>Rooms:{property.bedrooms}</MDBCardTitle>
-                
-                
+                <MDBCardTitle>Rooms:{property.bedrooms}</MDBCardTitle>  
             </MDBCardBody>
 
             </MDBCard>
             </div>
         </>
+
+        /* 
+        Contact Card is yet to be added to display the Contact Details of the Agent
+        */
 
     )
 

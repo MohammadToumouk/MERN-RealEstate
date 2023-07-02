@@ -4,8 +4,9 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Properties from '../components/Properties'
 import PropertyDetails from '../pages/PropertyDetails'
-import { Link, NavLink, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import Home from '../pages/Home'
+import Nav from '../components/Nav'
 
 
 function App() {
@@ -13,19 +14,8 @@ function App() {
 
   return (
     <>
-    <nav>
-      <ul>
-        <li>
-          <NavLink style={({ isActive }) => {
-            return isActive? {color: "black"} : {}
-          }} to="/">Home</NavLink>
-        </li>
-        <li><NavLink style={({ isActive }) => {
-            return isActive? {color: "black"} : {}
-          }} to="/properties">Properties</NavLink></li>
-      </ul>
-    </nav>
-
+    
+    <Nav />
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path='properties' element={<Properties />} />

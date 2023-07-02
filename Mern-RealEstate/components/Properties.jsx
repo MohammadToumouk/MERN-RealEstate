@@ -1,4 +1,5 @@
 import React,{useState,useEffect} from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import {
     MDBCard,
@@ -7,33 +8,26 @@ import {
     MDBCardImage,
     MDBBtn
   } from 'mdb-react-ui-kit';
-import { Link } from "react-router-dom";
+
   
-
-
 const properties = () => {
 
     const [properties, setProperties] = useState([]);
-
-
+   
     useEffect(() => {
 
         const fetchProperties = async () => {
     
             const res = await axios.get('http://localhost:5090/properties');
-            console.log(res);
-            console.log(res.data[5]._id)
+            /* console.log(res.data[16].location.coordinates);
+            console.log(res.data[5]._id) */
             setProperties(res.data)
-
-            
-    
+            /* console.log(res.data[11].owner.name) */
         };
         fetchProperties();
     }, []);
 
-    
-    
-    
+ 
     return(
         <div style={{display:"flex", flexDirection:"row", flexWrap:"wrap"}}> 
             {properties.map(property => (
@@ -46,7 +40,7 @@ const properties = () => {
                         
                         <MDBCardBody>
                                 <MDBCardTitle>{property.title}</MDBCardTitle>
-                                <MDBCardTitle>{property.owner}</MDBCardTitle>
+                                <MDBCardTitle>Agent:{property?.owner?.name}</MDBCardTitle>
                                 <MDBCardTitle>Price:{property.price}</MDBCardTitle>
                                 <MDBCardTitle>Rooms:{property.bedrooms}</MDBCardTitle>
                                 <Link to={`/properties/${property._id}`}>
